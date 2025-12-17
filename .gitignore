@@ -1,0 +1,4 @@
+# all file env will be ignore
+*.env
+#sample-data
+sample-data/*

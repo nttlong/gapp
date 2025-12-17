@@ -1,0 +1,37 @@
+
+	// 5. Test Arg Expansion
+	t.Run("Arg Expansion", func(t *testing.T) {
+		// Define flag
+		flagName := "cache-user"
+		flagVal := "redis-user"
+		// Check if flag already exists to avoid redefinition panic in tests
+		if flag.Lookup(flagName) == nil {
+			flag.String(flagName, flagVal, "cache user")
+		} else {
+			flag.Set(flagName, flagVal)
+		}
+		
+		// Create a temporary usage of ARG in a yaml string or file
+		// We can reuse test_config.yaml but needs a key with $ARG_
+		// Let's assume we add a key to test_config.yaml or use a new file.
+		// For simplicity, let's create a specific yaml for this test.
+		
+		argYaml := `
+cache:
+ user: "$ARG_CACHE_USER"
+`
+		tmpfile := "arg_test.yaml"
+		os.WriteFile(tmpfile, []byte(argYaml), 0644)
+		defer os.Remove(tmpfile)
+
+		cfg, err := service.LoadYamlConfigFromFile("./arg_test.yaml", "")
+		if err != nil {
+			t.Fatalf("Failed to load arg config: %v", err)
+		}
+		
+		// Wait, Config struct needs "Cache" field?
+		// User showed "cache" in config.yaml but did I update Config struct in config.types.go?
+		// I missed updating struct in previous steps if I didn't verify Config struct against config.yaml's "cache" section.
+		// Let's check config.types.go. I suspect "cache" is NOT in Config struct.
+		// I need to update Config struct first effectively.
+	})

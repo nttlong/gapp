@@ -1,0 +1,26 @@
+# config.yaml
+# convention any key with prefix $EVN_ will be load from environment variable
+# convention any key with prefix $ARG_ will be load from argument
+
+app:
+ name: api
+ version: 1.0.0
+
+log:
+ level: debug
+ format: console
+
+server:
+ port: 8080
+
+db:
+ dsn: "$EVN_DB_DSN" # database connection string load from environment variable
+cache:
+  enabled: true
+  provider: redis
+  ttl: 3600
+  server:
+    host: localhost
+    port: 6379
+    user: "$ARG_CACHE_USER" # that mean it will load from argument exmaple: app --cache-user=redis
+    password: "$ARG_CACHE_PASSWORD" # that mean it will load from argument exmaple: app --cache-password=redis

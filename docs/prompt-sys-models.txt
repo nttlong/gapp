@@ -1,0 +1,1 @@
+no. Read all code at https://github.com/vn-go/dx and see image docs\sys-diagram.png make all models by using vn-go/dx package. Each model in separated file in package fe\models

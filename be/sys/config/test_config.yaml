@@ -1,0 +1,10 @@
+app:
+ name: test-app
+ version: 0.0.1
+log:
+ level: info
+ format: json
+server:
+ port: 9090
+db:
+ dsn: "$EVN_TEST_DSN"
